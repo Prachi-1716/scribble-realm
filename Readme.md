@@ -1,24 +1,120 @@
-# Fullstack MERN Blogging Website
+# Blogging Website - Backend
 
-Fork this repo of "MERN Blogging Website" to start following the video tutorial.
+## Description
+This is the **backend server** for a blogging platform where users can register, login, create, update, and delete blog posts, comment on posts, and manage their profiles. The server exposes **RESTful APIs** to interact with the frontend.
 
-Checkout website demo - [Demo](https://youtu.be/J7BGuuuvDDk)
+---
 
-![Thumbnail](https://c10.patreonusercontent.com/4/patreon-media/p/post/90122909/dd5363bd03fb4a6c8fcd5d15df98e6bf/eyJ3Ijo4MjB9/1.png?token-time=1697414400&token-hash=BZ-Mzp19WnBLcCFB8LmJFDw98mpnCRGcOCt_T615miY%3D)
+## Features
+- User authentication (Sign up, Login, Logout)
+- CRUD operations for blog posts
+- Commenting system for blogs
+- Search functionality for blogs
+- Notifications for user interactions
+- Profile management (edit profile, change password)
+- Secure password hashing & JWT-based authentication
+- Cloud storage support for images (AWS / Firebase)
 
-This website features include -
-1. Modern Blog Editor using Editor JS.
-2. Google Authentication for Users
-3. Dynamic Blog Pages on dynamic urls.
-4. Search Page for Searching Blogs & users.
-5. Dedicated Users Profile with thier social links and written blogs.
-6. Dedicated dashboard to manage blogs either published or draft.
-7. Blog Post Analytics, editable and deletable.
-8. Like interaction on Blogs with feature to comment on the blog.
-9. Reply to comments. ( A nested Comment System )
-10. Every interaction on site stores as a notification for their respective users.
-11. Recent notification highlight separating them from old notifications.
-12. Edit profile option to update social links, bio and username
-13. Also user can change login password from settings.
-14. Its mobile responsive with modern design + fade in animation on pages.
-And much more.
+---
+
+## Tech Stack
+- **Backend:** Node.js, Express.js  
+- **Database:** MongoDB  
+- **Authentication:** JWT, bcrypt  
+- **Other Libraries:** Axios, dotenv, cors, mongoose  
+- **Cloud Storage:** Cloudinary (for images)
+
+---
+
+## Installation
+
+1. Clone the repository:
+
+git clone https://github.com/Prachi-1716/blog-server.git
+cd blog-server
+
+2. Install dependencies:
+
+npm install
+
+3. Create a .env file with your environment variables (example):
+
+PORT=3000
+MONGO_URI=<your_mongodb_connection_string>
+JWT_SECRET=<your_jwt_secret>
+
+4.Start the server:
+
+npm start
+# or for development with auto-reload
+npm run dev
+
+Server will run at http://localhost:3000.
+
+
+# Blog Server API
+
+Base URL: `/api`
+
+---
+
+## Auth Routes (`/api/auth`)
+
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| GET    | `/api/auth/me`      | Get logged-in user info |
+| POST   | `/api/auth/register`| Register a new user |
+| POST   | `/api/auth/login`   | Login a user |
+| POST   | `/api/auth/logout`  | Logout the current user |
+| POST   | `/api/auth/google`  | Login/Register with Google |
+
+---
+
+## Blog Routes (`/api/blogs`)
+
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| GET    | `/api/blogs`        | Fetch all blogs |
+| POST   | `/api/blogs`        | Create a new blog (requires authentication, banner image optional) |
+| POST   | `/api/blogs/image`  | Upload an image (requires authentication) |
+| GET    | `/api/blogs/:id`    | Fetch single blog by ID |
+| PATCH  | `/api/blogs/:id`    | Update blog by ID (requires authentication, banner image optional) |
+| DELETE | `/api/blogs/:id`    | Delete blog by ID (requires authentication) |
+
+### Comments on a Blog
+
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| POST   | `/api/blogs/:id/comments`           | Add a comment to a blog (requires authentication) |
+| GET    | `/api/blogs/:id/comments`           | Fetch all comments for a blog |
+| GET    | `/api/blogs/:blogId/comments/:commentId` | Fetch a single comment |
+| DELETE | `/api/blogs/:id/comments/:commentId` | Delete a comment (requires authentication) |
+
+### Likes
+
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| GET    | `/api/blogs/:id/likes`  | Get like state for a blog |
+| PATCH  | `/api/blogs/:id/likes` | Like/unlike a blog (requires authentication) |
+
+---
+
+## Search Routes (`/api/search`)
+
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| GET    | `/api/search/blogs?query=` | Search blogs |
+| GET    | `/api/search/users?query=` | Search users |
+
+---
+
+## User Routes (`/api/users`)
+
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| PATCH  | `/api/users/me`                     | Update user profile (requires authentication, profile picture optional) |
+| PATCH  | `/api/users/me/password`            | Change password (requires authentication) |
+| GET    | `/api/users/me/notifications`      | Fetch notifications (requires authentication) |
+| PATCH  | `/api/users/me/notifications/read` | Mark notifications as read (requires authentication) |
+| DELETE | `/api/users/me/notifications/:id`  | Delete a notification (requires authentication) |
+| GET    | `/api/users/:id`                    | Get user info by ID (or search a user) |
