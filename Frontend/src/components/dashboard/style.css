@@ -1,9 +1,8 @@
 *{
   color: #0A1A2F;
 }
-.sidebar {
-  min-width: 150px;
-  max-width: 220px;
+.sidebar { 
+  width: 210px;
   height: 80vh;
   background-color: #fff;
   border-right: 1px solid #e5e5e5;

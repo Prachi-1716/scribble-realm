@@ -11,12 +11,15 @@ const SERVER_URL = import.meta.env.VITE_SERVER_URL;
 function PublishForm({ blogId }) {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
+
   let { blog, setBlog, setEditorState, isDraft, setIsDraft } =
     useblogEditorContext();
+
   const [preview, setPreview] = useState(
     blog.banner instanceof File ? URL.createObjectURL(blog.banner) : blog.banner
-  );
+  ); 
 
+  // set banner
   useEffect(() => {
     if (blog.banner instanceof File) {
       const objectUrl = URL.createObjectURL(blog.banner);
@@ -30,6 +33,7 @@ function PublishForm({ blogId }) {
   let canclePublish = () => {
     setEditorState("editor");
   };
+
   let handleEkeyDown = (e) => {
     if (e.key === "Enter") e.preventDefault();
   };
@@ -87,13 +91,12 @@ function PublishForm({ blogId }) {
 
   let publishBlog = async () => {
     let { title, banner, description, content } = blog;
-    console.log(blog);
     if (
       !isDraft &&
       (!title ||
         !banner ||
         !description ||
-        !content?.blocks.length ||
+        !content[0]?.blocks.length ||
         !blog.tags?.length)
     ) {
       return toast.error("Please fill all the fields");
@@ -107,7 +110,7 @@ function PublishForm({ blogId }) {
     //   toastId = toast.loading(msg);
 
       let blocks = await Promise.all(
-        content.blocks.map(async (block) => {
+        content[0]?.blocks?.map(async (block) => {
           if (block.type === "image") {
             let imagefile = block.data.file?.orgFile;
             if (imagefile) {
@@ -148,7 +151,6 @@ function PublishForm({ blogId }) {
       } else if (typeof blog.banner === "string") {
         formData.append("bannerUrl", blog.banner); // send URL string separately
       }
-
       if (blogId) {
         await updateBlog(formData);
         // toast.dismiss(toastId);

@@ -1,5 +1,3 @@
-
-
 import { Link, useParams } from "react-router-dom";
 import logo from "../../imgs/logooo.jpg";
 import { useEffect, useState, useRef } from "react";
@@ -15,8 +13,9 @@ const SERVER_URL = import.meta.env.VITE_SERVER_URL;
 // fetch blog
 let fetchPreviousBlog = async (id, setBlog) => {
   try {
-    let res = await axios.get(`${SERVER_URL}/api/blog/${id}`, { params: { mode: "edit" } });
+    let res = await axios.get(`${SERVER_URL}/api/blogs/${id}`, { params: { mode: "edit" } });
     setBlog(res.data);
+    //console.log(res.data.content[0].blocks);
   } catch (err) {
     let msg = err.response?.data?.message || err.message;
     toast.error(msg);
@@ -29,21 +28,25 @@ function Editor({ setBlogId }) {
   const { id } = useParams();
   const editorRef = useRef(null); // ref for EditorJS container
 
-//   // fetch blog if editing
-//   useEffect(() => {
-//     if (id) fetchPreviousBlog(id, setBlog);
-//   }, [id]);
+  // fetch blog if editing
+  useEffect(() => {
+    if (id) fetchPreviousBlog(id, setBlog);
+  }, [id]);
 
 useEffect(() => {
-  if (!editorRef.current) return;
+  //console.log(editorRef);
+  //console.log(blog);
+  if (!editorRef.current) return;      
+  if (id && !blog?._id) return;         
 
   const editor = new EditorJS({
     holder: editorRef.current,
-    data: blog.content?.blocks ? blog.content : { blocks: [] }, // empty if new blog
+    data: blog.content[0]?.blocks ? blog.content[0] : { blocks: [] },
     tools,
     placeholder: "Let's write something",
+    autofocus: true,
   });
-
+   //console.log(editor);
   setTextEditor(editor);
 
   return () => {
@@ -51,28 +54,10 @@ useEffect(() => {
       .then(() => editor.destroy())
       .catch(() => {});
   };
-}, [blog]);
+}, [id, blog?._id]);
 
- 
-  useEffect(() => {
-    if (!blog?._id) return; 
-    if (!editorRef.current) return;
 
-    const editor = new EditorJS({
-      holder: editorRef.current,
-      data: blog.content?.blocks ? blog.content : { blocks: [] },
-      tools,
-      placeholder: "Let's write something",
-    });
 
-    setTextEditor(editor);
-
-    return () => {
-      editor.isReady
-        .then(() => editor.destroy())
-        .catch(() => {});
-    };
-  }, [blog?._id]);
 
   // handle banner preview
   useEffect(() => {
@@ -105,22 +90,33 @@ useEffect(() => {
     if (e.key === "Enter") e.preventDefault();
   };
 
-  const handlePublish = () => {
-    if (!isDraft && blog.banner == "/src/imgs/blogbanner.png") return toast.error("Banner is not chosen");
-    if (!isDraft && !blog.title.length) return toast.error("Title is Empty");
+  const handlePublish = (isDraft) => {
+  if (!isDraft && blog.banner == "/src/imgs/blogbanner.png") return toast.error("Banner is not chosen");
+  if (!isDraft && !blog.title.length) return toast.error("Title is Empty");
 
-    textEditor?.isReady?.then(() => {
-      textEditor.save().then((res) => {
-        if (res.blocks.length) {
-          setBlog({ ...blog, content: res });
-          setEditorState("publish");
-          if (id) setBlogId(id);
-        } else if (!isDraft) {
-          toast.error("Content is Empty");
-        }
-      });
+  textEditor?.isReady?.then(() => {
+    textEditor.save().then((res) => {
+      let contentToSave = res;
+
+      // Add empty paragraph if it's a draft and content is empty
+      if (isDraft && (!res.blocks || res.blocks.length === 0)) {
+        contentToSave = {
+          blocks: [
+            { type: "paragraph", data: { text: "" } }
+          ]
+        };
+      }
+
+      if (!isDraft && (!res.blocks || res.blocks.length === 0)) {
+        return toast.error("Content is Empty");
+      }
+
+      setBlog({ ...blog, content: [contentToSave] });
+      if (id) setBlogId(id);
+      setEditorState("publish");
     });
-  };
+  });
+};
 
   if (id && !blog?._id) return <p>Loading...</p>;
 
@@ -135,8 +131,8 @@ useEffect(() => {
             <p className="d-none d-md-inline m-0 p-0">{blog.title.length ? blog.title : "New Blog"}</p>
           </div>
           <div className="d-flex gap-3 align-items-center">
-            <button className="btn rounded-pill" style={{ backgroundColor: "#0A1A2F", color: "white", width: "85px" }} onClick={() => { setIsDraft(false); handlePublish(); }}>Publish</button>
-            <button className="btn rounded-pill" style={{ border: "2px solid #0A1A2F", color: "#0A1A2F", width: "110px" }} onClick={() => { setIsDraft(true); handlePublish(); }}>Save Draft</button>
+            <button className="btn rounded-pill" style={{ backgroundColor: "#0A1A2F", color: "white", width: "85px" }} onClick={() => { setIsDraft(false); handlePublish(false); }}>Publish</button>
+            <button className="btn rounded-pill" style={{ border: "2px solid #0A1A2F", color: "#0A1A2F", width: "110px" }} onClick={() => { setIsDraft(true); handlePublish(true); }}>Save Draft</button>
           </div>
         </div>
       </nav>

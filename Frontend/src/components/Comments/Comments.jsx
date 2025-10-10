@@ -182,8 +182,7 @@ import { useState, useEffect } from "react";
 import { useUser } from "../UserContext";
 import { Toaster, toast } from "react-hot-toast";
 import axios from "axios";
-import CommentCard from "./CommentCard";
-import Loader from "../Loader";
+import CommentCard from "./CommentCard"; 
 const SERVER_URL = import.meta.env.VITE_SERVER_URL;
 
 function Comments({ setShowComments, blog, setBlog, setCommentCount }) {
@@ -362,7 +361,7 @@ function Comments({ setShowComments, blog, setBlog, setCommentCount }) {
             onClick={() => fetchComments(page)}
             disabled={loadingComments}
           >
-            {loadingComments ? <Loader size={20} /> : "Load more..."}
+            {loadingComments ? <p>Loading...</p> : "Load more..."}
           </button>
         )}
       </div>

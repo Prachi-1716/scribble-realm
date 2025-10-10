@@ -4,7 +4,7 @@ import banner from "../../imgs/blogbanner.png";
 const blogStructure = {
     title: "",
     banner: banner,
-    content: {},
+    content: [], // array that has only one element that contails blocks 
     tags: [],
     description: "",
     author: {

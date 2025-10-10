@@ -42,7 +42,7 @@ module.exports.newBlog = async(req, res)=>{
         throw new ExpressError(403, "Something is missing");
     }  
 
-    let blog = new Blog({title, banner, description, content, tags, author: req.user._id});
+    let blog = new Blog({title, banner, description, content, tags, author: req.user._id, draft: isDraft});
     let result = await blog.save(); 
 
     if(!isDraft)  {
@@ -125,6 +125,8 @@ module.exports.updateBlog = async(req, res) =>{
     let { title, description, content, tags, isDraft } = req.body; 
     let banner = req.file?.path ? req.file.path : req.body.bannerUrl;
 
+    isDraft = isDraft === true || isDraft === "true";
+
     if (typeof content === "string") content = JSON.parse(content);
     if (typeof tags === "string") tags = JSON.parse(tags);   
     if (!isDraft && (!title || !banner || !description || !content || !tags?.length)) {
@@ -136,7 +138,7 @@ module.exports.updateBlog = async(req, res) =>{
     if(!blog) throw new ExpressError(400, "blog not found");
     if (String(blog.author) !== String(user._id)) return res.status(403).json({message: "you are not the author of this blog"});
     
-    blog = await Blog.findByIdAndUpdate(id, {title, banner, description, content, tags, author: req.user._id}, {new: true});
+    blog = await Blog.findByIdAndUpdate(id, {title, banner, description, content, tags, author: req.user._id, draft: isDraft}, {new: true});
     return res.status(200).json(blog);
 }
 

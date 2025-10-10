@@ -35,7 +35,7 @@ function ProfileWindow() {
         </Link> */}
 
         <Link
-          className="link" aria-current="page"  to="#">
+          className="link delete" aria-current="page"  to="#">
           <div >
             <button onClick={handleLogOut}>Log out<p>@{user.username}</p>
             </button>

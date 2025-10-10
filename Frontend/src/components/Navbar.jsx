@@ -15,6 +15,9 @@ function Navbar() {
   const profileRef = useRef(); // Ref for profile dropdown
   const searchInputRef = useRef();
   let navigate = useNavigate();
+  let [showSearchOnSmallScreen, setShowSearchOnSmallScreen] = useState(false);
+  const [searchBoxClass, setSearchBoxClass] = useState("d-none d-md-flex align-items-center bg-light rounded-pill border");
+
   const handleProfileWindow = () => setShowProfileWindow(!showProfileWindow);
 
   // Close profile window when clicking outside
@@ -36,16 +39,28 @@ function Navbar() {
       toast.error(err.response?.data?.message || err.message);
     }
   }
-  useEffect(() => { 
+
+  useEffect(() => {
+    setShowSearchOnSmallScreen(false);
     if(user && user._id){
     newNotifications();}
   }, []);
+
   useEffect(() => {
     if(user && user._id){
     const interval = setInterval(newNotifications, 30000); // fetch every 30s
     return () => clearInterval(interval);}
   }, []);
 
+  let handleSearchClick = ()=>{
+    setShowSearchOnSmallScreen(true);
+    setSearchBoxClass("d-flex align-items-center bg-light rounded-pill border");
+  }
+
+  let hideSearch = ()=>{
+    setShowSearchOnSmallScreen(false);
+    setSearchBoxClass("d-none d-md-flex align-items-center bg-light rounded-pill border");
+  }
 
   let handleSearch = () => {
     let query = searchInputRef.current.value.trim(); 
@@ -62,18 +77,18 @@ function Navbar() {
     <nav className="navbar bg-body-light shadow-sm py-2 sticky-top" style={{backgroundColor: "white"}}>
       <div className="container-fluid px-3">
         {/* Brand */}
-        <Link to="/" className="navbar-brand d-flex align-items-center">
+        {!showSearchOnSmallScreen && <Link to="/" className="navbar-brand d-flex align-items-center">
           <img
             src={logo}
             className="flex-none w-10 me-md-2"
             style={{ height: "50px" }}
             alt="logo"
           />
-        </Link>
+        </Link>}
 
         {/* Search box – visible md+ */}
         <div
-          className="d-none d-md-flex align-items-center bg-light rounded-pill border"
+          className={searchBoxClass}
           style={{ maxWidth: "260px" }}
         >
           <input
@@ -87,22 +102,29 @@ function Navbar() {
           <i className="fa-solid fa-magnifying-glass me-3" onClick={handleSearch}></i>
         </div>
 
+        {/* cross icon when searching on small screen */}
+        {
+          showSearchOnSmallScreen && <i className="fa-solid fa-x ms-3 d-md-none" onClick={hideSearch}></i>
+        }
+
         {/* Nav Links */}
+        
         <div className="navbar-nav ms-auto d-flex flex-row align-items-center gap-2">
           {/* Search icon – visible only on small */}
-          <div
+          { !showSearchOnSmallScreen && <div
             className="d-md-none rounded-circle p-2"
             style={{ backgroundColor: "#f2f4f6ff" }}
           >
             <i
               className="fa-solid fa-magnifying-glass fs-5"
               style={{ cursor: "pointer", color: "#0A1A2F" }}
-              onClick={()=>(navigate("/search"))}
+              onClick={handleSearchClick}
             ></i>
-          </div>
+          </div>}
+
 
           {/* Sign In & Sign Up */}
-          {user == null && (
+          {user == null && !showSearchOnSmallScreen && (
             <>
               <Link
                 className="nav-link p-0 d-flex justify-content-center ms-md-3"
@@ -135,7 +157,7 @@ function Navbar() {
           )}
 
           {/* When user logged in shows notification and profile */}
-          {user != null && (<>
+          {user != null && !showSearchOnSmallScreen && (<>
             
               {/* Write visible on > mid screen*/}
               
