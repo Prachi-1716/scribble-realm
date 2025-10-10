@@ -1,0 +1,227 @@
+*{
+  color: #0A1A2F;
+}
+.sidebar {
+  min-width: 150px;
+  max-width: 220px;
+  height: 80vh;
+  background-color: #fff;
+  border-right: 1px solid #e5e5e5;
+  position: sticky;
+  top: 70px;
+}
+
+.item , .settings{
+  width: 100%;
+  padding: 10px 15px;
+  margin: 3px 0;
+  text-decoration: none;
+  color: #0A1A2F;
+  border-left: 3px solid transparent;
+  transition: all 0.2s ease;
+}
+
+.sidebar .item:hover {
+  background-color: #edf2f9;
+}
+
+.sidebar .item.active {
+  background-color: #f5f8ff;
+  border-left: 3px solid #0A1A2F;
+  font-weight: 600; 
+}
+
+
+/* change pass */
+
+/* Form styling */
+.change-password-form {
+  width: 100%;
+  max-width: 400px;
+  padding: 2rem;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  position: relative;
+}
+
+/* Form title */
+.form-title {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  color: #0a1a2f;
+}
+
+/* Input groups */
+.input-group {
+  position: relative;
+  margin-bottom: 1.5rem;
+}
+
+.input-group label {
+  display: block;
+  margin-bottom: 0.3rem;
+  font-weight: 500;
+  color: #0a1a2f;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 10px 40px 10px 12px; /* right padding for eye icon */
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 1rem;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.input-group input:focus {
+  border-color: #007bff;
+}
+
+/* Toggle password icon */
+.toggle-password {
+  position: absolute;
+  top: 70% ;
+  right: 12px;
+  transform: translateY(-50%);
+  cursor: pointer;
+  color: #888;
+  font-size: 0.7rem;
+}
+
+/* Submit button */
+.submit-btn {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-radius: 6px;
+  background-color: #0a1a2f;
+  color: #fff;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.submit-btn:hover {
+  background-color: #0a1a2f;
+}
+
+
+/* edit profile */
+.image {
+  display: flex;
+  flex-direction: column;
+  align-items: center; 
+}
+
+#profileImg{
+  display: none;
+}
+.previewImg {
+  border: 1px solid #0a1a2f;
+  height: 150px;
+  width: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  backface-visibility: hidden !important;
+  transform: translateZ(0);   
+}
+
+.image .username{
+  font-weight: bold;
+  font-size: medium;
+}
+
+.blogs, .reads{
+  font-size: 13px;
+  color:  #4b5a6c;
+}
+
+.input input, #bio { 
+  padding: 10px 12px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  font-size: 16px;
+  transition: box-shadow 0.2s ease, border-color 0.2s ease;
+  outline: none;
+}
+.input, #bio { 
+  min-width: 280px; /* default for mobile/small screens */
+  max-width: 350px;
+  margin: 0 auto;
+}
+
+@media (min-width: 768px) {
+  .input, #bio {
+    width: 350px; /* tablet */
+  }
+}
+
+@media (min-width: 1200px) {
+  .input, #bio {
+    width: 370px; /* large desktop */
+  }
+}
+
+input:disabled {
+  background-color: #f5f7fa;
+  color: #5f6c7b;
+  border: 1px solid #d6dce3;
+  cursor: not-allowed;
+  opacity: 1; /* prevents it from looking faded */
+}
+
+.disabled-label {
+  color: #8a97a6;
+  font-weight: 500;
+}
+
+#bio{
+  height: 80px;
+  outline: none;
+  resize: none;
+}
+
+
+
+.social-links input{
+  padding-left: 35px;
+}
+
+
+.social-links i{
+  position: relative;
+  top: 30px;
+  left: 8px;
+  color: #4f6583;
+}
+
+
+.submit-button{
+  border: 1px solid #0A1A2F;
+  background-color: transparent;
+  width: 150px;
+  margin-top: 1rem;
+  padding-top: 5px;
+  padding-bottom: 8px;
+  border-radius: 9999px;
+}
+ 
+
+
+/* notification */
+
+nav .link{
+  padding: 5px 10px 7px 10px;
+  border-radius: 15px;
+  box-shadow: 0 0 10px 2px rgba(0, 0, 0, 0.15);  
+  border: none;
+  background-color: white;
+}
+nav .active{
+  background-color: #0A1A2F;
+  color: white;
+}

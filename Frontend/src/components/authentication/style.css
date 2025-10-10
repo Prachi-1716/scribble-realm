@@ -1,0 +1,98 @@
+/* ===== Container ===== */
+.auth-container {
+  height: 88vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background: #ffffff;
+  border-radius: 12px;
+  font-family: 'Segoe UI', Tahoma, sans-serif;
+  padding: 30px 20px;
+}
+
+/* ===== Headings ===== */
+.auth-container h3 {
+  font-weight: 600;
+  color: #333;
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+/* ===== Input Groups ===== */
+.auth-container .input-group {
+  height: 45px;
+  border-radius: 8px;
+  border: 1px solid #ced4da; /* default border */
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.12);
+  transition: border 0.2s, box-shadow 0.2s;
+}
+
+/* Remove Bootstrap effects from inputs */
+.auth-container .form-control {
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+  height: 100%;
+  padding-left: 10px;
+}
+
+/* Remove Bootstrap focus and invalid styles */
+.auth-container .form-control:focus,
+.auth-container .form-control.is-invalid {
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+/* ===== Validation: Red border on entire input group ===== */
+.auth-container .input-group.is-invalid-group {
+  border: 1px solid #dc3545 !important;
+  box-shadow: none !important;
+}
+
+/* ===== Input Group Icons ===== */
+.auth-container .input-group-text {
+  background-color: #ffffff;
+  border: none;
+  padding: 0 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ===== Validation feedback ===== */
+.auth-container .invalid-feedback {
+  color: #dc3545;
+  font-size: 0.875rem;
+  margin-top: 5px;
+  display: block;
+}
+
+/* ===== Buttons ===== */
+.btn.sign-up, .btn.login, div .google{
+    width: 95px;
+  background-color: #0A1A2F;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 10px 5px;
+  border-radius: 25px;
+  transition: background-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.btn.sign-up:hover, .btn.login:hover, div .google:hover {
+    color: #fff;
+  background-color: rgba(11, 22, 40, 0.764);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+.btn.sign-up:focus, .btn.login:focus {
+  outline: none;
+  box-shadow: 0 0 0 0.2rem rgba(59, 129, 235, 0.4);
+}
+
+/* ===== Extra text spacing ===== */
+.auth-container .me-3 {
+  font-size: 0.95rem;
+  color: #555;
+}

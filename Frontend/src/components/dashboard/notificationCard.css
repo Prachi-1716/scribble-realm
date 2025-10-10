@@ -1,0 +1,47 @@
+
+
+span .blog-title{
+    color: #5480ba !important;
+    font-weight: 400;
+}
+
+
+.reply, .delete{
+    color: #0A1A2F;
+    font-size: small;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.unseen {
+  border-left: 3px solid #b5b8bc !important; 
+  background-color: #ffffff !important;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.08), 0 0px 8px rgba(0, 0, 0, 0.12);
+}
+
+.seen { 
+  background-color: #f9f6f6 !important;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.08), 0 0px 8px rgba(0, 0, 0, 0.12);
+}
+
+.img-container{
+    height: 40px;
+    width: 40px;
+}
+.img-container img{
+    height: 40px;
+    width: 40px;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 50%; 
+}
+
+#comment, #reply{
+    border: none;
+    outline: none;
+    padding: 10px 15px;
+    background-color: #e5eefa;
+    resize: none;
+    max-width: 300px;
+    border: 1px solid #617fa2;
+}

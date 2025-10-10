@@ -1,0 +1,45 @@
+.outer-div{
+    width: 200px !important;
+    height: 170px;
+    position: fixed;
+    padding: 10px;
+    top: 60px;
+    right: 0px;
+    z-index: 9999 !important;
+    background-color: rgb(254, 255, 255) !important;
+    padding-left: 25px !important;
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding-bottom: 1rem;
+}
+
+.outer-div .link{
+    text-decoration: none;
+    box-shadow: none !important;
+}
+
+
+.outer-div .link i, .outer-div .link div{
+    color: #556e92ff; 
+}
+
+.outer-div .link i:hover, .outer-div .link div:hover, .outer-div .link:hover{
+    color: rgb(50, 75, 111); 
+}
+
+.outer-div .link button{
+    border: none;
+    background-color: transparent;
+    color: rgb(50, 75, 111);
+    margin: 0;
+    padding: 0;
+    text-align: left; 
+}
+
+.outer-div .link button p{
+    color: rgb(50, 75, 111);
+    font-size: 13px; 
+      
+}

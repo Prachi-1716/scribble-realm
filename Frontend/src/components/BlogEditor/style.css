@@ -1,0 +1,115 @@
+*{
+    color: #0A1A2F;
+}
+.container .blog-image{
+    background-color: rgba(234, 234, 234, 0.422);
+    position: relative;
+    max-width: 700px;
+    object-fit: contain;   
+}
+
+.container .blog-image:hover{
+    opacity: 0.8;
+}
+
+.blog-image .bannerimg{
+    position: absolute;  
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;    
+    object-position: center; 
+    display: block;
+}
+
+#title{
+    border: none;
+    height: 3rem;
+    max-width: 700px;      /* same as .blog-image */
+    width: 100%;
+    outline: none;
+    margin-top: 1.5rem;
+    resize: none;
+    font-size: x-large;
+    font-weight: 500;
+    line-height: 1.25;
+
+}
+#title::placeholder{
+    opacity: 40%;
+}
+
+.publishBtn{
+    background-color: transparent;
+    border: none;
+    font-size: 22px;
+    position: absolute;
+    right: 5px;
+    top: 10px;
+    color: #1f3b65;
+}
+
+.publishBtn:hover{
+    color: #0A1A2F;
+}
+.publish-input-container{
+    width: 100%;
+    max-width: 700px;
+}
+
+.publish-input-container #title{
+    background-color: #3989f310;
+    height: 2.5rem !important;
+    font-size: large;
+    padding: 0.5rem;
+    margin-top: 5px;
+    
+}
+
+#description{
+    background-color: #3989f310;
+    font-size: medium;
+    padding: 0.5rem;
+    margin-top: 5px;
+    border: none;
+    outline: none;
+    resize: none;
+    margin-top: 5px;
+    width: 100%;
+    max-width: 700px;  
+}
+
+.tags{
+    background-color: #3989f310;
+    font-size: medium;
+    padding: 1rem;
+    padding-bottom: 0;
+    margin-top: 5px;
+    width: 100%;
+    max-width: 700px;  
+    border-radius: 10px;
+}
+.tags input{
+    margin-top: 10px;
+    border: none;
+    outline: none;
+    width: 100%;
+    height: 2.5rem;
+    padding: 0.5rem;
+    border-radius: 10px;
+}
+.tags .tag{
+    background-color: white;
+    margin: 8px;
+    padding: 5px 10px 5px 15px;
+    display: inline-flex;
+    align-items: center;
+    border-radius: 9999px;
+}
+.tags .tag i{
+    font-size: small;
+    margin-top: 5px;
+    margin-left: 5px;
+}
+/* #0A1A2F */

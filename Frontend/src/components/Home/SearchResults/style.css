@@ -1,0 +1,30 @@
+.profileImage{
+    height: 120px;
+    width: 120px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 1px solid #0A1A2F;
+}
+
+.userInfo .username {
+    font-size: 15px;
+}
+.userInfo .username, .userInfo  .fullName{
+    color: #0A1A2F;
+}
+
+.userInfo .info, .joinedAt{
+    color: #6183b0;
+    font-size: small;
+}
+.about div{
+    color: #0A1A2F;
+}
+
+.socialLinks i{
+    color: #5e6f86;
+}
+
+.socialLinks i:hover{
+    color: #0A1A2F;
+}

@@ -1,0 +1,55 @@
+*{
+    color: #0A1A2F;
+}
+.banner, .content-image-container .content-image{
+    max-width: 700px; 
+}
+.banner img{
+    height: 300px;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;    
+    object-position: center; 
+    display: block;
+}
+.publishedAt{
+    font-size: x-small;
+     color: #526d8e;
+}
+
+.profile-image{
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: center;
+}
+.username{
+    font-weight: 500;
+}
+.fullName{
+    font-size: smaller;
+    color: #526d8e;
+}
+
+.likePara, .commentPara{
+    font-size: 10px;
+    margin-left: 3px;
+}
+
+.quote{
+    background-color: #e5eefa;
+    padding: 5px 10px;
+    border-left: 3px solid #869bb7;
+}
+.quote .text{
+    font-weight: 500;
+}
+.quote .caption{
+    font-weight: 400;
+    font-size: smaller;
+}
+
+.delete i{
+    font-size: 13px !important;
+}

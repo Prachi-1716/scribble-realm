@@ -1,0 +1,111 @@
+*{
+    color: #0A1A2F;
+}
+
+.active{
+    color: #0A1A2F;
+    border-bottom: 1.5px solid #0A1A2F;
+    padding-bottom: 15px;
+}
+.inactive{
+    color: #4d5f77;
+    border: none;
+}
+
+/* card */
+.card{
+    display: flex;
+    height: auto;
+    padding: 0 0.5rem; 
+    border: none !important;
+}
+.card .user{
+    height: 13px;
+}
+.card .user span{
+    font-size: 10px;
+}
+.card .body .text span{
+    font-size: 13px;
+}
+.card .description{ 
+    display: -webkit-box;        /* required for line clamp */
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;      /* number of lines to show */
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+
+.card .body .banner img{ 
+    height: 65px;
+    width: 65px;
+    object-fit: cover;
+}
+
+.card .like{
+    font-size: 13px;
+}
+
+.card  .like-count{
+    font-size: 12px;   
+    margin: 3px; 
+}
+
+.card  .tag{
+    display: inline-flex;
+    align-items: center;
+    font-size: 14px; 
+    padding: 2px 8px;
+    background-color: #398af31f;
+    border-radius: 9999px;
+}
+
+.category{ 
+    background-color: #398af31f;
+    margin: 2px;
+    padding: 5px 10px 5px 15px;
+    display: inline-flex;
+    align-items: center;
+    border-radius: 9999px;
+    border: none;
+}
+
+.category:hover, .activeCategory{
+    border: 1px solid #0A1A2F;
+}
+
+.rank{
+    background-color: #398af31f;
+    padding: 0.5rem 1rem;
+    border-radius: 50%;
+    font-weight: bold;
+    color: #7c97bb;
+    margin-right: 0.5rem;
+}
+.trending-banner img{
+    height: 50px;
+    width: 50px;
+    object-fit: cover;
+}
+
+.load-more{
+    margin-top: 0.8rem;
+    color: #5e8bc5;
+    cursor: poiner !important;
+    border: none;
+    background-color: transparent;
+}
+
+.usercard .profile-image img{
+    border-radius: 50%;
+    height: 30px;
+    width: 30px;
+    object-fit: cover;
+}
+
+.usercard .username{
+    font-weight: 500;
+}
+
+
