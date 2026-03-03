@@ -85,7 +85,7 @@ module.exports.signUp = async (req, res, next) => {
     res.cookie("token", acces_token, {
         httpOnly: true,
         secure: process.env.NODE_ENV === "production",
-        sameSite: process.env.NODE_ENV === "production" ? "None" : "Lax",
+        sameSite: process.env.NODE_ENV === "production" ? "None" : "None",
         maxAge: 3 * 24 * 60 * 60 * 1000             
     });
     req.user = user;
@@ -109,7 +109,7 @@ module.exports.signIn = async(req, res, next)=>{
     res.cookie("token", acces_token, {
         httpOnly: true,
         secure: process.env.NODE_ENV === "production",
-        sameSite: process.env.NODE_ENV === "production" ? "None" : "Lax",
+        sameSite: process.env.NODE_ENV === "production" ? "None" : "None",
         maxAge: 3 * 24 * 60 * 60 * 1000             
     });
     req.user = user;
@@ -121,7 +121,7 @@ module.exports.logout = (req, res) => {
     res.clearCookie("token", {
     httpOnly: true,
     secure: process.env.NODE_ENV === "production",
-    sameSite: process.env.NODE_ENV === "production" ? "None" : "Lax"
+    sameSite: process.env.NODE_ENV === "production" ? "None" : "None"
 });
 
     return res.status(200).json({ message: "Logged out successfully" });
@@ -166,7 +166,7 @@ module.exports.googleAuth = async(req, res)=>{
     res.cookie("token", acces_token, {
         httpOnly: true,
         secure: process.env.NODE_ENV === "production",
-        sameSite: process.env.NODE_ENV === "production" ? "None" : "Lax",
+        sameSite: process.env.NODE_ENV === "production" ? "None" : "None",
         maxAge: 3 * 24 * 60 * 60 * 1000
     });
 
