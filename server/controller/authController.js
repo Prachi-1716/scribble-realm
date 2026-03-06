@@ -88,6 +88,8 @@ module.exports.signUp = async (req, res, next) => {
         secure: process.env.NODE_ENV === "production",
         sameSite: process.env.NODE_ENV === "production" ? "None" : "None",
         path: "/",
+        domain: ".onrender.com",
+        domain: ".onrender.com",
         maxAge: 3 * 24 * 60 * 60 * 1000             
     });
     req.user = user;
@@ -172,6 +174,7 @@ module.exports.googleAuth = async(req, res)=>{
         secure: process.env.NODE_ENV === "production",
         sameSite: process.env.NODE_ENV === "production" ? "None" : "None",
         path: "/",
+        domain: ".onrender.com",
         maxAge: 3 * 24 * 60 * 60 * 1000
     });
 
