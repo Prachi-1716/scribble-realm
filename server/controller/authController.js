@@ -87,6 +87,7 @@ module.exports.signUp = async (req, res, next) => {
         httpOnly: true,
         secure: process.env.NODE_ENV === "production",
         sameSite: process.env.NODE_ENV === "production" ? "None" : "None",
+        path: "/",
         maxAge: 3 * 24 * 60 * 60 * 1000             
     });
     req.user = user;
@@ -111,6 +112,7 @@ module.exports.signIn = async(req, res, next)=>{
         httpOnly: true,
         secure: process.env.NODE_ENV === "production",
         sameSite: process.env.NODE_ENV === "production" ? "None" : "None",
+        path: "/",
         maxAge: 3 * 24 * 60 * 60 * 1000             
     });
     req.user = user;
@@ -169,9 +171,11 @@ module.exports.googleAuth = async(req, res)=>{
         httpOnly: true,
         secure: process.env.NODE_ENV === "production",
         sameSite: process.env.NODE_ENV === "production" ? "None" : "None",
+        path: "/",
         maxAge: 3 * 24 * 60 * 60 * 1000
     });
 
     res.status(200).json(formatUserDataToSend(user));
 }
+
 
