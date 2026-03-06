@@ -24,6 +24,7 @@ let formatUserDataToSend = (user)=>{
 module.exports.getUser = async(req, res)=>{
     
     const token = req.cookies.token; // Read token from cookie
+    console.log("get user' + , idToken);
     if (!token) {
         return res.status(200).json({});
     }
@@ -43,7 +44,7 @@ module.exports.getUser = async(req, res)=>{
 
 module.exports.signUp = async (req, res, next) => {
     const { fullName, email, password } = req.body;
-
+    console.log("signUp ' + fullName);
     // Validation
     if (!fullName || fullName.length < 3)
         throw new ExpressError(400, "Invalid name");
@@ -101,7 +102,7 @@ module.exports.signIn = async(req, res, next)=>{
 
     let user = await User.findOne({"personal_info.email": email});
     if(!user) throw new ExpressError(400, "Invalid Email");
-
+    console.log("login" + user);
     let result = await bcrypt.compare(password, user.personal_info.password);
     if(!result) throw new ExpressError(400, "Incorrect password");
     let acces_token = jwt.sign({id: user._id}, process.env.JWT_SECRET, {expiresIn: "3d"});
@@ -129,6 +130,7 @@ module.exports.logout = (req, res) => {
 
 module.exports.googleAuth = async(req, res)=>{
     const { idToken } = req.body;
+    console.log("google auth ' + , idToken);
     const decodedToken = await admin.auth().verifyIdToken(idToken);
     const {email } = decodedToken;
 
@@ -172,3 +174,4 @@ module.exports.googleAuth = async(req, res)=>{
 
     res.status(200).json(formatUserDataToSend(user));
 }
+
